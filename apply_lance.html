@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Application</title>
+  <link rel="stylesheet" href="apply.css">
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="container">
+    <a href="#" onclick="history.back()" class="back-link">&larr; Back to Jobs</a>
+    <div class="head_m">
+      <h2 class="job-title">Part-Time Freelancer</h2>
+      <p class="company">Freelancing &middot; Plus New York, NY $16&ndash;20/hour + tips</p>
+    </div>
+
+    <div class="info-banner">
+      <h3>📢 Apply for this position</h3>
+      <p>Fill out the form below to submit your application. All fields marked with * are required.</p>
+    </div>
+
+    <form>
+      <div class="section">
+        <div class="section-title">📌 Position Type</div>
+        <label class="option sky">
+          <input type="radio" name="position" /> Content write
+        </label>
+        <label class="option green">
+          <input type="radio" name="position" /> Graphic Designer
+        </label>
+        <label class="option peach">
+          <input type="radio" name="position" /> Socail media Manager
+        </label>
+        <label class="option peach">
+          <input type="radio" name="position" /> Videographer
+        </label>
+        <label class="option peach">
+          <input type="radio" name="position" /> Editor
+        </label>
+      </div>
+
+      <div class="section">
+        <div class="section-title">👤 Personal Information</div>
+        <div class="form-row">
+          <input type="text" placeholder="First Name *" required />
+          <input type="text" placeholder="Last Name *" required />
+        </div>
+        <div class="form-row">
+          <input type="email" placeholder="Email Address *" required />
+          <input type="tel" placeholder="Phone Number *" required />
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">🚗Experience</div>
+        <label class="option green">
+          <input type="radio" name="transportation" /> ✅ Yes, I have experience in the restaurant industry 
+        </label>
+        <label class="option red">
+          <input type="radio" name="transportation" /> ❌ No, I don't have any experience
+        </label>
+      </div>
+
+      <div class="section">
+        <div class="section-title">📆 Availability</div>
+        <div class="availability-grid">
+          <label><input type="checkbox" /> Monday</label>
+          <label><input type="checkbox" /> Tuesday</label>
+          <label><input type="checkbox" /> Wednesday</label>
+          <label><input type="checkbox" /> Thursday</label>
+          <label><input type="checkbox" /> Friday</label>
+          <label><input type="checkbox" /> Saturday</label>
+          <label><input type="checkbox" /> Sunday</label>
+        </div>
+        <label class="option yellow"><input type="checkbox" /> 🌅 Morning (6 AM - 12 PM)</label>
+        <label class="option sky"><input type="checkbox" /> 🌤️ Afternoon (12 PM - 6 PM)</label>
+        <label class="option lavender"><input type="checkbox" /> 🌙 Evening (6 PM - 10 PM)</label>
+        <label class="option green"><input type="checkbox" /> ✅ Flexible (Any time)</label>
+        <label class="option sky"><input type="checkbox" /> ❄️ I can work weekends</label>
+        <label class="option peach"><input type="checkbox" /> 🔔 I can work evenings</label>
+      </div>
+
+      <div class="section">
+        <div class="section-title">📝 Additional Information</div>
+        <textarea rows="4" placeholder="Please provide 1–2 professional references with their contact information..."></textarea>
+      </div>
+
+      <div class="buttons">
+        <button type="submit" class="submit" onclick="fun()">📤 Submit Application</button>
+        <button type="button" class="draft" onclick="fun1()">💾 Save as Draft</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    function fun() {
+      alert("Application submitted successfully!");
+    }
+    function fun1() {
+      alert("Application saved as draft!");
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": ["#3a9080", "#f5f5f5", "#201d3a", "#0d0b1a"]
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 0.8,
+                        "opacity_min": 0.2,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#3a9080",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>

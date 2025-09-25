@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="./available.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<title>HustleHub - Find Your Perfect Part-Time Job</title>
+</head>
+<body>
+<div id="particles-js"></div>
+<header class="header">
+        <!-- Logo -->
+        <div class="logo">
+            <i class="fa-solid fa-briefcase"></i>
+            HustleHub
+        </div>
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a href="./dashboard.html">Dashboard</a>
+            <a href="./available.html">Available Jobs</a>
+            <a href="./post_jobs.html">Post Job</a>
+        </nav>
+        <!-- User Menu -->
+        <div class="user-menu">
+            <div class="notification">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="profile-dropdown">
+                <i class="fa-solid fa-user-circle user-icon"></i>
+                <div class="dropdown-content">
+                    <a href="./dashboard.html" class="mobile-nav-link">Dashboard</a>
+                    <a href="./available.html" class="mobile-nav-link">Available Jobs</a>
+                    <a href="./post_jobs.html" class="mobile-nav-link">Post Job</a>
+                    <hr class="dropdown-divider mobile-nav-link">
+                    <a href="./dashboard.html">Profile</a>
+                    <a href="./drafts.html">Drafts</a>
+                    <a href="./save.html">Saved Jobs</a>
+                    <a href="./index.html">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+<div class="container">
+  <div class="filter">
+    <div class="filter-head">
+      <h2><i class="fa-solid fa-filter" aria-hidden="true"></i> Filters</h2>
+    </div>
+    <div class="search-jobs">
+      <p><i class="fa-solid fa-search" aria-hidden="true"></i> Search Jobs</p>
+      <input class="search-company" id="jobSearch" type="text" placeholder="Job title or company" aria-label="Search for jobs by title or company">
+    </div>
+    <div class="categories">
+      <p><i class="fa-solid fa-tags" aria-hidden="true"></i> Job Categories</p>
+      <label><input type="checkbox" name="category" value="Restaurant">Restaurant & Food</label>
+      <label><input type="checkbox" name="category" value="Tutoring">Tutoring</label>
+      <label><input type="checkbox" name="category" value="Freelance">Freelancing</label>
+      <label><input type="checkbox" name="category" value="Delivery">Delivery</label>
+      <button class="clear-all" aria-label="Clear all filters">Clear All</button>
+    </div>
+  </div>
+  <div class="jobs" id="availableJobsContainer">
+
+  </div>
+
+</div>
+<footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <h2 class="footer-logo">HustleHub</h2>
+                <p>Connecting talent with part-time opportunities. Your trusted platform for flexible work.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="./dashboard.html">Home</a></li>
+                    <li><a href="./available.html">Find Jobs</a></li>
+                    <li><a href="./post_jobs.html">Post a Job</a></li>
+                    <li><a href="./about.html">About Us</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-support">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="./help.html">Help Center</a></li>
+                    <li><a href="./faq.html">FAQs</a></li>
+                    <li><a href="./terms.html">Terms & Conditions</a></li>
+                    <li><a href="./privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 HustleHub. All rights reserved.</p>
+        </div>
+    </footer>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  // Initialize particles.js
+  if (typeof particlesJS !== 'undefined') {
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: ["#4cb69f", "#f5f5f5", "#201d3a", "#0d0b1a"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true, anim: { enable: true, speed: 0.8, opacity_min: 0.2 } },
+        size: { value: 3, random: true, anim: { enable: true, speed: 40, size_min: 0.1 } },
+        line_linked: { enable: true, distance: 150, color: "#4cb69f", opacity: 0.4, width: 1 },
+        move: { enable: true, speed: 3, direction: "none", random: true, straight: false, out_mode: "out" }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
+        modes: { grab: { distance: 140, line_linked: { opacity: 1 } }, push: { particles_nb: 4 } }
+      },
+      retina_detect: true
+    });
+  } else {
+    console.warn('particles.js not loaded');
+  }
+  // Sanitize HTML to prevent XSS
+  function sanitizeHTML(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+  // Initialize availableJobsData with static jobs if not already present
+  function initializeJobs() {
+    let existingJobs;
+    try {
+      existingJobs = JSON.parse(localStorage.getItem('availableJobsData')) || []; // Changed key
+    } catch (e) {
+      console.error('Error accessing localStorage:', e);
+      existingJobs = [];
+    }
+    const staticJobs = [
+      {
+        jobId: '1', // Changed to string
+        jobTitle: 'Part-time Waiter',
+        companyName: 'Bella Vista Restaurant',
+        jobLocation: 'Connaught Place, Delhi',
+        jobCategory: 'Restaurant',
+        jobDescription: 'Looking for friendly and experienced waiters to join our team. Evening shifts available.',
+        skills: 'Previous restaurant experience, Good communication skills, Flexible schedule',
+        salaryAmount: '250-300',
+        salaryType: 'hour',
+        jobType: 'Part-time',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'Active',
+        applyLink: 'apply_rest.html',
+        views: 50,
+        applications: 3
+      },
+      {
+        jobId: '2', // Changed to string
+        jobTitle: 'Line Cook',
+        companyName: 'Urban Kitchen',
+        jobLocation: 'Bandra, Mumbai',
+        jobCategory: 'Restaurant',
+        jobDescription: 'Seeking skilled line cook for busy kitchen. Must be able to work in a fast-paced environment.',
+        skills: 'Culinary experience, Food safety certification, Weekend availability',
+        salaryAmount: '280-320',
+        salaryType: 'hour',
+        jobType: 'Part-time',
+        postedDate: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'Active',
+        applyLink: 'apply_rest.html',
+        views: 60,
+        applications: 4
+      },
+      {
+        jobId: '3', // Changed to string
+        jobTitle: 'Math Tutor',
+        companyName: 'EduCenter',
+        jobLocation: 'Online/Home',
+        jobCategory: 'Tutoring',
+        jobDescription: 'Teach mathematics to high school students with flexible scheduling options.',
+        skills: 'Strong math background, Teaching experience preferred, Patience with students',
+        salaryAmount: '400-600',
+        salaryType: 'hour',
+        jobType: 'Flexible',
+        postedDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'Active',
+        applyLink: 'apply_tutoring.html',
+        views: 70,
+        applications: 5
+      },
+      {
+        jobId: '4', // Changed to string
+        jobTitle: 'Content Writer',
+        companyName: 'Digital Agency',
+        jobLocation: 'Sector 18, Noida',
+        jobCategory: 'Freelance',
+        jobDescription: 'Write engaging blog posts and articles for various clients across different industries.',
+        skills: 'Excellent writing skills, Research abilities, Portfolio required',
+        salaryAmount: '800-1500',
+        salaryType: 'article',
+        jobType: 'Freelance',
+        postedDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'Active',
+        applyLink: 'apply_lance.html',
+        views: 80,
+        applications: 6
+      },
+      {
+        jobId: '5', // Changed to string
+        jobTitle: 'Food Delivery Partner',
+        companyName: 'Swiggy',
+        jobLocation: 'Rajouri Garden, Delhi',
+        jobCategory: 'Delivery',
+        jobDescription: 'Deliver food orders to customers using your own vehicle with flexible timing.',
+        skills: 'Valid driver\'s license, Own vehicle, Smartphone',
+        salaryAmount: '200-300',
+        salaryType: 'hour + tips',
+        jobType: 'Flexible',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'Active',
+        applyLink: 'apply_driver.html',
+        views: 90,
+        applications: 7
+      },
+      {
+        jobId: '6', // Changed to string
+        jobTitle: 'Barista',
+        companyName: 'Brew & Co.',
+        jobLocation: 'Saket, Delhi',
+        jobCategory: 'Restaurant',
+        jobDescription: 'Serve quality coffee and interact with customers in a friendly environment.',
+        skills: 'Experience with espresso machines, Good communication skills',
+        salaryAmount: '300',
+        salaryType: 'hour',
+        jobType: 'Part-time',
+        postedDate: new Date().toISOString(),
+        status: 'Active',
+        applyLink: 'apply_rest.html',
+        views: 100,
+        applications: 5
+      },
+      {
+        jobId: '7', // Changed to string
+        jobTitle: 'English Tutor',
+        companyName: 'Smart Learn Academy',
+        jobLocation: 'Indiranagar, Bangalore',
+        jobCategory: 'Tutoring',
+        jobDescription: 'Provide English grammar and communication training to school students.',
+        skills: 'BA in English or related field, Fluency in spoken English',
+        salaryAmount: '500',
+        salaryType: 'hour',
+        jobType: 'Flexible',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'Active',
+        applyLink: 'apply_tutoring.html',
+        views: 110,
+        applications: 6
+      },
+      {
+        jobId: '8', // Changed to string
+        jobTitle: 'Graphic Designer',
+        companyName: 'PixelWorks Studio',
+        jobLocation: 'Remote',
+        jobCategory: 'Freelance',
+        jobDescription: 'Create marketing graphics and social media designs for global clients.',
+        skills: 'Strong portfolio in Adobe/Canva, Good eye for design',
+        salaryAmount: '20000',
+        salaryType: 'month',
+        jobType: 'Freelance',
+        postedDate: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'Active',
+        applyLink: 'apply_lance.html',
+        views: 150,
+        applications: 10
+      },
+      {
+        jobId: '9', // Changed to string
+        jobTitle: 'Grocery Delivery Agent',
+        companyName: 'BigBasket',
+        jobLocation: 'Jubilee Hills, Hyderabad',
+        jobCategory: 'Delivery',
+        jobDescription: 'Deliver grocery items to local customers with quick turnarounds.',
+        skills: 'Bike and driving license, Android phone with app access',
+        salaryAmount: '250',
+        salaryType: 'hour',
+        jobType: 'Part-time',
+        postedDate: new Date().toISOString(),
+        status: 'Active',
+        applyLink: 'apply_driver.html',
+        views: 120,
+        applications: 8
+      },
+      {
+        jobId: '10', // Changed to string
+        jobTitle: 'Software Engineer',
+        companyName: 'Tech Corp',
+        jobLocation: 'Hyderabad',
+        jobCategory: 'Freelance',
+        jobDescription: 'Develop and maintain web applications using modern JavaScript frameworks.',
+        skills: '2+ years of software development experience, Proficiency in JavaScript and React, Strong problem-solving skills',
+        salaryAmount: '50000',
+        salaryType: 'month',
+        jobType: 'Freelance',
+        postedDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'Active',
+        applyLink: 'apply_lance.html',
+        views: 200,
+        applications: 15
+      },
+      {
+        jobId: '11', // Changed to string
+        jobTitle: 'Graphic Designer',
+        companyName: 'Creative Studio',
+        jobLocation: 'Mumbai',
+        jobCategory: 'Freelance',
+        jobDescription: 'Design visual content for branding and marketing campaigns.',
+        skills: 'Experience with Adobe Creative Suite, Portfolio of design work, Strong visual communication skills',
+        salaryAmount: '30000',
+        salaryType: 'month',
+        jobType: 'Freelance',
+        postedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'Active',
+        applyLink: 'apply_lance.html',
+        views: 150,
+        applications: 10
+      },
+      {
+        jobId: '12', // Changed to string
+        jobTitle: 'Data Analyst',
+        companyName: 'Data Insights',
+        jobLocation: 'Pune',
+        jobCategory: 'Admin',
+        jobDescription: 'Analyze data to provide actionable insights for business decisions.',
+        skills: 'Proficiency in SQL and Python, Experience with data visualization tools, Strong analytical skills',
+        salaryAmount: '40000',
+        salaryType: 'month',
+        jobType: 'Part-time',
+        postedDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'Paused',
+        applyLink: 'apply_admin.html',
+        views: 180,
+        applications: 12
+      }
+    ];
+    const mergedJobs = [...existingJobs];
+    staticJobs.forEach(staticJob => {
+      // Only add static job if an existing job with the same ID doesn't already exist
+      if (!existingJobs.some(job => String(job.jobId) === String(staticJob.jobId))) { // Ensure string comparison
+        mergedJobs.push(staticJob);
+      }
+    });
+    try {
+      localStorage.setItem('availableJobsData', JSON.stringify(mergedJobs)); // Changed key
+    } catch (e) {
+      console.error('Error saving to localStorage:', e);
+    }
+  }
+  // Function to create a job card HTML element
+  function createAvailableJobCard(job) {
+    const card = document.createElement('div');
+    card.classList.add('job-card');
+    card.dataset.category = job.jobCategory;
+    card.dataset.location = job.jobLocation;
+    card.dataset.salary = job.salaryAmount;
+    card.dataset.jobId = String(job.jobId); // Ensure this is a string
+    const tagMap = {
+      'Restaurant': 'restaurant-tag',
+      'Tutoring': 'tutor-tag',
+      'Freelance': 'freelance-tag',
+      'Delivery': 'delivery-tag',
+      'Healthcare': 'healthcare-tag',
+      'Events': 'events-tag',
+      'Admin': 'admin-tag'
+    };
+    const jobTagClass = tagMap[job.jobCategory] || 'job-tag';
+    const requirementsList = job.skills ? job.skills.split(',').map(skill => `<li>${sanitizeHTML(skill.trim())}</li>`).join('') : '';
+    card.innerHTML = `
+      <div class="job-header">
+        <h2>${sanitizeHTML(job.jobTitle)}</h2>
+        <div class="job-tags"><span class="job-tag ${jobTagClass}">${sanitizeHTML(job.jobCategory)}</span></div>
+      </div>
+      <div class="job-loc">
+        <p><i class="fa-solid fa-building" aria-hidden="true"></i> ${sanitizeHTML(job.companyName)}</p>
+        <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i> ${sanitizeHTML(job.jobLocation)}</p>
+      </div>
+      <div class="job-description">
+        <p>${sanitizeHTML(job.jobDescription)}</p><br>
+        <h4>Requirements:</h4>
+        <ul>
+          ${requirementsList}
+        </ul>
+      </div>
+      <div class="job-stats">
+        <div class="stat"><i class="fa-solid fa-rupee-sign" aria-hidden="true"></i><span class="stat-value">₹${sanitizeHTML(job.salaryAmount)}/${sanitizeHTML(job.salaryType)}</span></div>
+        <div class="stat"><i class="fa-regular fa-clock" aria-hidden="true"></i><span>${sanitizeHTML(job.jobType)}</span></div>
+        <div class="stat"><i class="fa-solid fa-calendar" aria-hidden="true"></i><span>Posted ${timeAgo(job.postedDate)}</span></div>
+      </div>
+      <div class="job-actions">
+        <button class="button-1" onclick="window.location.href='${sanitizeHTML(job.applyLink)}'" aria-label="Apply for ${sanitizeHTML(job.jobTitle)}">Apply Now</button>
+        <button class="button-2" data-job-id="${job.jobId}" aria-label="Save ${sanitizeHTML(job.jobTitle)}">Save Job</button>
+      </div>
+    `;
+    return card;
+  }
+  // Helper function to calculate time ago
+  function timeAgo(dateString) {
+    const postedDate = new Date(dateString);
+    const now = new Date();
+    const diffTime = Math.abs(now - postedDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    if (diffDays === 0) return 'today';
+    if (diffDays === 1) return '1 day ago';
+    return `${diffDays} days ago`;
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initialize jobs
+    initializeJobs();
+    const categoryCheckboxes = document.querySelectorAll("input[name='category']");
+    const availableJobsContainer = document.getElementById('availableJobsContainer');
+    const clearAll = document.querySelector(".clear-all");
+    const searchInput = document.getElementById("jobSearch");
+    const userIcon = document.getElementById('user-icon');
+    const dropdownContent = document.getElementById('dropdown-content');
+    // Load jobs from localStorage
+    let storedJobs;
+    try {
+      storedJobs = JSON.parse(localStorage.getItem('availableJobsData')) || []; // Changed key
+    } catch (e) {
+      console.error('Error accessing localStorage:', e);
+      storedJobs = [];
+    }
+    // Append all active jobs from localStorage
+    availableJobsContainer.innerHTML = '';
+    storedJobs.forEach(job => {
+      if (job.status === 'Active') {
+        const newCard = createAvailableJobCard(job);
+        availableJobsContainer.appendChild(newCard);
+      }
+    });
+    // Re-select all job cards after dynamic additions
+    let jobCards = availableJobsContainer.querySelectorAll(".job-card");
+    // Manage saved jobs
+    let savedJobs;
+    try {
+      savedJobs = JSON.parse(localStorage.getItem('savedJobs')) || [];
+    } catch (e) {
+      console.error('Error accessing localStorage:', e);
+      savedJobs = [];
+    }
+    jobCards.forEach(card => {
+      const jobId = String(card.dataset.jobId); // Ensure jobId is a string
+      const saveButton = card.querySelector('.button-2');
+      if (savedJobs.includes(jobId)) {
+        saveButton.textContent = 'Saved';
+        saveButton.classList.add('saved');
+      }
+      saveButton.addEventListener('click', () => {
+        try {
+          if (savedJobs.includes(jobId)) {
+            savedJobs = savedJobs.filter(id => String(id) !== jobId); // Ensure string comparison
+            saveButton.textContent = 'Save Job';
+            saveButton.classList.remove('saved');
+          } else {
+            savedJobs.push(jobId);
+            saveButton.textContent = 'Saved';
+            saveButton.classList.add('saved');
+          }
+          localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
+        } catch (e) {
+          console.error('Error saving to localStorage:', e);
+        }
+      });
+    });
+    // Filter jobs based on category and search
+    function filterJobs() {
+      const selectedCategories = Array.from(categoryCheckboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+      const searchQuery = searchInput.value.trim().toLowerCase();
+      jobCards.forEach(card => {
+        const category = card.getAttribute("data-category");
+        const jobTitle = card.querySelector(".job-header h2").textContent.toLowerCase();
+        const company = card.querySelector(".job-loc p:first-child").textContent.toLowerCase();
+        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(category);
+        const matchesSearch = searchQuery === "" || 
+                               jobTitle.includes(searchQuery) || 
+                               company.includes(searchQuery);
+        card.style.display = matchesCategory && matchesSearch ? "block" : "none";
+      });
+    }
+    // Event listeners for filters
+    categoryCheckboxes.forEach(cb => cb.addEventListener("change", filterJobs));
+    searchInput.addEventListener("input", filterJobs);
+    clearAll.addEventListener("click", () => {
+      categoryCheckboxes.forEach(cb => cb.checked = false);
+      searchInput.value = "";
+      filterJobs();
+    });
+    // Profile dropdown toggle
+    if (userIcon && dropdownContent) {
+      userIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownContent.classList.toggle('active');
+      });
+      document.addEventListener('click', (e) => {
+        if (!dropdownContent.contains(e.target) && !userIcon.contains(e.target)) {
+          dropdownContent.classList.remove('active');
+        }
+      });
+    }
+    filterJobs();
+  });
+</script>
+</body>
+</html>

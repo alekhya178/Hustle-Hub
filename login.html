@@ -1,0 +1,724 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Sign Up Page</title>
+  
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+     /* Dark Theme CSS */
+      * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+
+      body {
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #4cb69f;
+          overflow-x: hidden;
+          position: relative;
+          background: linear-gradient(135deg, #201d3a 0%, #1a1730 50%, #0d0b1a 100%);
+      }
+
+      #particles-js {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+      }
+
+      .page {
+          display: flex;
+          width: 90%;
+          max-width: 1100px;
+          background: #1a1730;
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+          z-index: 1;
+      }
+
+      .left, .right {
+          padding: 40px;
+          flex: 1;
+      }
+
+      .left {
+          background: linear-gradient(135deg, #4cb69f, #2a264f);
+          color: #f5f5f5;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+      }
+
+      .left h1 {
+          font-size: 36px;
+          margin-bottom: 20px;
+      }
+
+      .left h1 span {
+          color: #f5f5f5;
+          font-weight: 700;
+      }
+
+      .left ul {
+          list-style: none;
+          margin-top: 20px;
+          padding: 0;
+      }
+
+      .left ul li {
+          margin: 10px 0;
+          font-size: 16px;
+      }
+
+      .right {
+          background: #1a1730;
+      }
+
+      .tabs {
+          display: flex;
+          margin-bottom: 20px;
+      }
+
+      .tabs a {
+          flex: 1;
+          padding: 10px;
+          text-align: center;
+          text-decoration: none;
+          color: #f5f5f5;
+          border-bottom: 2px solid transparent;
+          font-weight: bold;
+          transition: all 0.3s ease;
+      }
+
+      .tabs a.active {
+          color: #4cb69f;
+          border-bottom: 2px solid #4cb69f;
+      }
+      
+      h2 {
+          margin-bottom: 10px;
+          color: #f5f5f5;
+          font-size: 28px;
+      }
+
+      p {
+          margin-bottom: 20px;
+          color: rgba(245, 245, 245, 0.8);
+      }
+
+      .social-icons {
+          display: flex;
+          gap: 15px;
+          justify-content: center;
+      }
+
+      .social-icons a {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #4cb69f;
+          border: 1px solid #4cb69f;
+          text-decoration: none;
+          transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+          background: #4cb69f;
+          color: #1a1730;
+          transform: translateY(-2px);
+      }
+
+      .divider {
+          text-align: center;
+          margin: 20px 0;
+          font-size: 12px;
+          color: rgba(245, 245, 245, 0.6);
+          text-transform: uppercase;
+      }
+
+      form {
+          display: flex;
+          flex-direction: column;
+      }
+
+      form label {
+          font-size: 14px;
+          margin-bottom: 5px;
+          color: #f5f5f5;
+      }
+
+      form input {
+          padding: 12px;
+          margin-bottom: 15px;
+          border: 1px solid rgba(76, 182, 159, 0.3);
+          border-radius: 8px;
+          background: rgba(245, 245, 245, 0.1);
+          color: #f5f5f5;
+          font-size: 16px;
+      }
+      
+      form input::placeholder {
+          color: rgba(245, 245, 245, 0.5);
+      }
+
+      form input:focus {
+          outline: none;
+          border-color: #4cb69f;
+          box-shadow: 0 0 10px rgba(76, 182, 159, 0.2);
+      }
+
+      .form-extra {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 12px;
+          margin-bottom: 20px;
+      }
+
+      .form-extra a {
+          color: #4cb69f;
+          text-decoration: none;
+      }
+      
+      .form-extra label {
+           color: rgba(245, 245, 245, 0.8);
+           display: flex;
+           align-items: center;
+           cursor: pointer;
+      }
+      
+      .form-extra input[type="checkbox"] {
+          margin-right: 8px;
+          margin-bottom: 0; /* Added to fix alignment */
+          accent-color: #4cb69f; /* Sets the active color of the checkbox */
+      }
+
+      .submit-btn {
+          background: linear-gradient(to right, #4cb69f, #2a264f);
+          color: #f5f5f5;
+          border: none;
+          padding: 12px;
+          font-size: 16px;
+          font-weight: bold;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+      }
+
+      .submit-btn:hover {
+          opacity: 0.9;
+          transform: translateY(-2px);
+      }
+
+      .switch-text {
+          margin-top: 20px;
+          font-size: 14px;
+          text-align: center;
+          color: rgba(245, 245, 245, 0.8);
+      }
+
+      .switch-text a {
+          color: #4cb69f;
+          text-decoration: none;
+          font-weight: bold;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+          .page {
+              flex-direction: column;
+              width: 95%;
+              max-width: 500px;
+          }
+
+          .left {
+              display: none; /* Hide the left section on mobile */
+          }
+
+          .right {
+              flex: none; /* Remove flex-grow */
+              width: 100%; /* Take full width */
+              padding: 30px;
+          }
+
+          .left h1 {
+              font-size: 30px;
+              text-align: center;
+          }
+
+          .left p {
+              font-size: 14px;
+              text-align: center;
+          }
+
+          .left ul {
+              margin-top: 15px;
+          }
+
+          .left ul li {
+              font-size: 14px;
+              text-align: center;
+          }
+
+          .tabs {
+              flex-wrap: wrap;
+          }
+
+          .tabs a {
+              flex: none;
+              width: 50%;
+          }
+      }
+
+      @media (max-width: 480px) {
+          .page {
+              width: 95%;
+              max-width: 350px;
+          }
+
+          .left, .right {
+              padding: 20px;
+          }
+
+          .left h1 {
+              font-size: 28px;
+          }
+
+          .left p, .left ul li {
+              font-size: 13px;
+          }
+
+          .social-icons a {
+              width: 35px;
+              height: 35px;
+              font-size: 16px;
+          }
+
+          form input {
+              padding: 10px;
+              font-size: 14px;
+          }
+
+          .submit-btn {
+              padding: 10px;
+              font-size: 14px;
+          }
+
+          h2 {
+              font-size: 24px;
+          }
+
+          p {
+              font-size: 14px;
+          }
+      }
+  </style>
+</head>
+<body>
+  <!-- Particles.js container -->
+  <div id="particles-js"></div>
+
+  <div class="page">
+      <!-- Left Side: Informational Content -->
+      <div class="left">
+          <h1>Welcome to the <span>Future</span></h1>
+          <p>Join thousands of users who trust our platform for their daily workflow.</p>
+          <ul>
+              <li>➡ Secure & encrypted data</li>
+              <li>➡ 24/7 customer support</li>
+              <li>➡ Free forever plan</li>
+          </ul>
+      </div>
+
+      <!-- Right Side: Form Container -->
+      <div class="right">
+          <!-- Login Panel -->
+          <div id="loginPanel">
+              <div class="tabs">
+                  <a href="#" class="tab-link active" data-panel="loginPanel">Login</a>
+                  <a href="#" class="tab-link" data-panel="signupPanel">Sign Up</a>
+                  
+              </div>
+              <h2>Welcome back!</h2>
+              <p>Please sign in to your account.</p>
+              <div id="loginMessage"></div>
+              <form onsubmit="handleLogin(event)">
+                  <label for="loginEmail">Email Address</label>
+                  <input id="loginEmail" type="email" placeholder="Enter your email" required />
+                  <label for="loginPassword">Password</label>
+                  <input id="loginPassword" type="password" placeholder="Enter your password" required />
+                  <div class="form-extra">
+                      <label><input type="checkbox" /> Remember me</label>
+                      <a href="#" class="tab-link" data-panel="forgotPasswordPanel">Forgot password?</a>
+                  </div>
+                  <button class="submit-btn" type="submit">Sign In</button>
+              </form>
+              <div class="divider">Or Continue With</div>
+              <div class="social-icons">
+                  <a href="#"><i class="fab fa-google"></i></a>
+                  <a href="#"><i class="fab fa-github"></i></a>
+              </div>
+          </div>
+
+          <!-- Signup Panel -->
+          <div id="signupPanel" style="display: none;">
+              <div class="tabs">
+                  <a href="#" class="tab-link" data-panel="loginPanel">Login</a>
+                  <a href="#" class="tab-link active" data-panel="signupPanel">Sign Up</a>
+                  
+              </div>
+              <h2>Join us!</h2>
+              <p>Create your account.</p>
+              <div id="signupMessage"></div>
+              <form onsubmit="handleSignup(event)">
+                  <label for="signupEmail">Email Address</label>
+                  <input id="signupEmail" type="email" placeholder="Enter your email" required />
+                  <label for="signupPassword">Password</label>
+                  <input id="signupPassword" type="password" placeholder="Create a password" required />
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input id="confirmPassword" type="password" placeholder="Confirm password" required />
+                  <button class="submit-btn" type="submit">Sign Up</button>
+              </form>
+              <div class="divider">Or Continue With</div>
+              <div class="social-icons">
+                  <a href="#"><i class="fab fa-google"></i></a>
+                  <a href="#"><i class="fab fa-github"></i></a>
+              </div>
+              <p class="switch-text">Already have an account? <a href="#" class="tab-link" data-panel="loginPanel">Login</a></p>
+          </div>
+
+          <!-- Forgot Password Panel -->
+          <div id="forgotPasswordPanel" style="display: none;">
+              <div class="tabs">
+                  
+                  
+              </div>
+              <h2>Reset Password</h2>
+              <p>Enter your email to receive a password reset link</p>
+              <div id="forgotPasswordMessage"></div>
+              <form onsubmit="handleForgotPassword(event)">
+                  <label for="resetEmail">Email Address</label>
+                  <input id="resetEmail" type="email" placeholder="Enter your email" required />
+                  <button class="submit-btn" type="submit">Send Reset Link</button>
+              </form>
+              <p class="switch-text">Back to <a href="#" class="tab-link" data-panel="loginPanel">Login</a></p>
+          </div>
+      </div>
+  </div>
+
+  <!-- particles.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+      /* Particles.js Configuration */
+      particlesJS('particles-js', {
+          "particles": {
+              "number": {
+                  "value": 80,
+                  "density": {
+                      "enable": true,
+                      "value_area": 800
+                  }
+              },
+              "color": {
+                  "value": ["#4cb69f", "#f5f5f5", "#201d3a", "#0d0b1a"]
+              },
+              "shape": {
+                  "type": "circle",
+                  "stroke": {
+                      "width": 0,
+                      "color": "#000000"
+                  },
+                  "polygon": {
+                      "nb_sides": 5
+                  },
+                  "image": {
+                      "src": "img/github.svg",
+                      "width": 100,
+                      "height": 100
+                  }
+              },
+              "opacity": {
+                  "value": 0.5,
+                  "random": true,
+                  "anim": {
+                      "enable": true,
+                      "speed": 0.8,
+                      "opacity_min": 0.2,
+                      "sync": false
+                  }
+              },
+              "size": {
+                  "value": 3,
+                  "random": true,
+                  "anim": {
+                      "enable": true,
+                      "speed": 40,
+                      "size_min": 0.1,
+                      "sync": false
+                  }
+              },
+              "line_linked": {
+                  "enable": true,
+                  "distance": 150,
+                  "color": "#4cb69f",
+                  "opacity": 0.4,
+                  "width": 1
+              },
+              "move": {
+                  "enable": true,
+                  "speed": 3,
+                  "direction": "none",
+                  "random": true,
+                  "straight": false,
+                  "out_mode": "out",
+                  "bounce": false,
+                  "attract": {
+                      "enable": false,
+                      "rotateX": 600,
+                      "rotateY": 1200
+                  }
+              }
+          },
+          "interactivity": {
+              "detect_on": "canvas",
+              "events": {
+                  "onhover": {
+                      "enable": true,
+                      "mode": "grab"
+                  },
+                  "onclick": {
+                      "enable": true,
+                      "mode": "push"
+                  },
+                  "resize": true
+              },
+              "modes": {
+                  "grab": {
+                      "distance": 140,
+                      "line_linked": {
+                          "opacity": 1
+                      }
+                  },
+                  "push": {
+                      "particles_nb": 4
+                  }
+              }
+          },
+          "retina_detect": true
+      });
+
+      // --- Local Storage User Management Functions ---
+      
+      // Initialize users array from localStorage or create empty array
+      function getUsers() {
+          const users = localStorage.getItem('users');
+          return users ? JSON.parse(users) : [];
+      }
+
+      // Save users array to localStorage
+      function saveUsers(users) {
+          localStorage.setItem('users', JSON.stringify(users));
+      }
+
+      // Check if user exists
+      function userExists(email) {
+          const users = getUsers();
+          return users.some(user => user.email.toLowerCase() === email.toLowerCase());
+      }
+
+      // Validate user credentials
+      function validateUser(email, password) {
+          const users = getUsers();
+          return users.find(user => 
+              user.email.toLowerCase() === email.toLowerCase() && 
+              user.password === password
+          );
+      }
+
+      // Show message function
+      function showMessage(elementId, message, isError = true) {
+          const messageDiv = document.getElementById(elementId);
+          const messageClass = isError ? 'message error' : 'message success';
+          
+          messageDiv.innerHTML = `<div class="${messageClass}">${message}</div>`;
+          
+          // Clear message after 5 seconds
+          setTimeout(() => {
+              messageDiv.innerHTML = '';
+          }, 5000);
+      }
+
+      // Clear all messages
+      function clearMessages() {
+          document.getElementById('loginMessage').innerHTML = '';
+          document.getElementById('signupMessage').innerHTML = '';
+          document.getElementById('forgotPasswordMessage').innerHTML = '';
+      }
+
+      // --- Panel Switching Logic ---
+      const loginPanel = document.getElementById('loginPanel');
+      const signupPanel = document.getElementById('signupPanel');
+      const forgotPasswordPanel = document.getElementById('forgotPasswordPanel');
+      const allTabLinks = document.querySelectorAll('.tab-link');
+
+      allTabLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+              e.preventDefault();
+              const panelId = link.getAttribute('data-panel');
+
+              // Clear all messages when switching panels
+              clearMessages();
+
+              // Show the correct panel
+              loginPanel.style.display = panelId === 'loginPanel' ? 'block' : 'none';
+              signupPanel.style.display = panelId === 'signupPanel' ? 'block' : 'none';
+              forgotPasswordPanel.style.display = panelId === 'forgotPasswordPanel' ? 'block' : 'none';
+
+              // Update active state on all tabs
+              document.querySelectorAll(`.tabs a[data-panel="${panelId}"]`).forEach(tab => tab.classList.add('active'));
+              document.querySelectorAll(`.tabs a:not([data-panel="${panelId}"])`).forEach(tab => tab.classList.remove('active'));
+          });
+      });
+
+      // --- Enhanced Form Submission Handlers ---
+      function handleLogin(event) {
+          event.preventDefault();
+          
+          const email = document.getElementById('loginEmail').value.trim();
+          const password = document.getElementById('loginPassword').value;
+          
+          // Admin credentials
+          const ADMIN_EMAIL = 'admin@example.com';
+          const ADMIN_PASSWORD = 'adminpass';
+
+          if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+              showMessage('loginMessage', 'Admin login successful! Redirecting to admin dashboard...', false);
+              setTimeout(() => {
+                  localStorage.setItem('currentUser', JSON.stringify({ email: ADMIN_EMAIL, role: 'admin' }));
+                  window.location.href = "admin.html";
+              }, 1500);
+          } else {
+              // Check if user exists and password is correct
+              const user = validateUser(email, password);
+              
+              if (user) {
+                  showMessage('loginMessage', 'Login successful! Redirecting...', false);
+                  setTimeout(() => {
+                      // Store current user session
+                      localStorage.setItem('currentUser', JSON.stringify(user));
+                      window.location.href = "dashboard.html";
+                  }, 1500);
+              } else if (userExists(email)) {
+                  showMessage('loginMessage', 'Invalid password. Please try again.');
+              } else {
+                  showMessage('loginMessage', 'No account found with this email. Please sign up first.');
+              }
+          }
+      }
+
+      function handleSignup(event) {
+          event.preventDefault();
+          
+          const email = document.getElementById('signupEmail').value.trim();
+          const password = document.getElementById('signupPassword').value;
+          const confirmPassword = document.getElementById('confirmPassword').value;
+          
+          // Validate email format
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+              showMessage('signupMessage', 'Please enter a valid email address.');
+              return;
+          }
+          
+          // Check if passwords match
+          if (password !== confirmPassword) {
+              showMessage('signupMessage', 'Passwords do not match. Please try again.');
+              return;
+          }
+          
+          // Check password strength (minimum 6 characters)
+          if (password.length < 8) {
+              showMessage('signupMessage', 'Password must be at least 8 characters long.');
+              return;
+          }
+          
+          // Check if user already exists
+          if (userExists(email)) {
+              showMessage('signupMessage', 'User already exists with this email address. Please use a different email or try logging in.');
+              return;
+          }
+          
+          // Create new user
+          const users = getUsers();
+          const newUser = {
+              email: email,
+              password: password,
+              createdAt: new Date().toISOString()
+          };
+          
+          users.push(newUser);
+          saveUsers(users);
+          
+          showMessage('signupMessage', 'Account created successfully! You can now log in.', false);
+          
+          // Clear form and switch to login after 2 seconds
+          setTimeout(() => {
+              document.querySelector('#signupPanel form').reset();
+              // Switch to login panel
+              loginPanel.style.display = 'block';
+              signupPanel.style.display = 'none';
+              forgotPasswordPanel.style.display = 'none';
+              document.querySelectorAll(`.tabs a[data-panel="loginPanel"]`).forEach(tab => tab.classList.add('active'));
+              document.querySelectorAll(`.tabs a:not([data-panel="loginPanel"])`).forEach(tab => tab.classList.remove('active'));
+              clearMessages();
+          }, 2000);
+      }
+
+      function handleForgotPassword(event) {
+          event.preventDefault();
+          
+          const email = document.getElementById('resetEmail').value.trim();
+          
+          // Validate email format
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+              showMessage('forgotPasswordMessage', 'Please enter a valid email address.');
+              return;
+          }
+          
+          // Check if user exists
+          if (userExists(email)) {
+              showMessage('forgotPasswordMessage', 'Password reset link sent to your email!', false);
+              // Clear form and switch to login after 3 seconds
+              setTimeout(() => {
+                  document.querySelector('#forgotPasswordPanel form').reset();
+                  loginPanel.style.display = 'block';
+                  signupPanel.style.display = 'none';
+                  forgotPasswordPanel.style.display = 'none';
+                  document.querySelectorAll(`.tabs a[data-panel="loginPanel"]`).forEach(tab => tab.classList.add('active'));
+                  document.querySelectorAll(`.tabs a:not([data-panel="loginPanel"]`).forEach(tab => tab.classList.remove('active'));
+                  clearMessages();
+              }, 3000);
+          } else {
+              showMessage('forgotPasswordMessage', 'No account found with this email address.');
+          }
+      }
+  </script>
+</body>
+</html>

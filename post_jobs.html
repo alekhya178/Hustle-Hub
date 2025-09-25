@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HustleHub - Job Posting Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./post_jobs.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <header class="header">
+        <!-- Logo -->
+        <div class="logo">
+            <i class="fa-solid fa-briefcase"></i>
+            HustleHub
+        </div>
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a href="./dashboard.html">Dashboard</a>
+            <a href="./available.html">Available Jobs</a>
+            <a href="./post_jobs.html">Post Job</a>
+        </nav>
+        <!-- User Menu -->
+        <div class="user-menu">
+            <div class="notification">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="profile-dropdown">
+                <i class="fa-solid fa-user-circle user-icon"></i>
+                <div class="dropdown-content">
+                    <a href="./dashboard.html" class="mobile-nav-link">Dashboard</a>
+                    <a href="./available.html" class="mobile-nav-link">Available Jobs</a>
+                    <a href="./post_jobs.html" class="mobile-nav-link">Post Job</a>
+                    <hr class="dropdown-divider mobile-nav-link">
+                    <a href="./dashboard.html">Profile</a>
+                    <a href="./drafts.html">Drafts</a>
+                    <a href="./save.html">Saved Jobs</a>
+                    <a href="./index.html">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">My Job Postings</h1>
+                <p class="page-subtitle">Manage and track your job listings</p>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search posts..." id="jobSearch">
+                <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+        </div>
+
+        <div class="cards-container" id="jobCardsContainer">
+            <!-- Job cards will be dynamically loaded here by JavaScript -->
+        </div>
+
+        <button class="add-button" title="Post New Job" onclick="window.location.href='./post-job_form.html'">
+            <span class="plus-icon">+</span>
+        </button>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <h2 class="footer-logo">HustleHub</h2>
+                <p>Connecting talent with part-time opportunities. Your trusted platform for flexible work.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="./dashboard.html">Home</a></li>
+                    <li><a href="./available.html">Find Jobs</a></li>
+                    <li><a href="./post_jobs.html">Post a Job</a></li>
+                    <li><a href="./about.html">About Us</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-support">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="./help.html">Help Center</a></li>
+                    <li><a href="./faq.html">FAQs</a></li>
+                    <li><a href="./terms.html">Terms & Conditions</a></li>
+                    <li><a href="./privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 HustleHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": ["#4cb69f", "#f5f5f5", "#201d3a", "#0d0b1a"]
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 0.8,
+                        "opacity_min": 0.2,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#4cb69f",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        function changeStatus(button, status) {
+            const card = button.closest(".card");
+            const badge = card.querySelector(".status-badge");
+            badge.classList.remove("status-active", "status-paused", "status-expired");
+            if (status === "active") {
+                badge.textContent = "Active";
+                badge.classList.add("status-active");
+            } else if (status === "paused") {
+                badge.textContent = "Paused";
+                badge.classList.add("status-paused");
+            } else if (status === "expired") {
+                badge.textContent = "Expired";
+                badge.classList.add("status-expired");
+            }
+            const dropdownItems = card.querySelectorAll(".dropdown-item");
+            dropdownItems.forEach(item => item.classList.remove("active", "pause", "expired"));
+            if (status === "active") {
+                button.classList.add("active");
+            } else if (status === "paused") {
+                button.classList.add("pause");
+            } else if (status === "expired") {
+                button.classList.add("expired");
+            }
+
+            const jobIdToUpdate = String(card.dataset.jobId); // Ensure jobId is a string
+
+            // Update 'myPostedJobs'
+            let myPostedJobs = JSON.parse(localStorage.getItem('myPostedJobs')) || [];
+            const myJobIndex = myPostedJobs.findIndex(job => String(job.id) === jobIdToUpdate);
+            if (myJobIndex !== -1) {
+                myPostedJobs[myJobIndex].status = status.charAt(0).toUpperCase() + status.slice(1);
+                localStorage.setItem('myPostedJobs', JSON.stringify(myPostedJobs));
+            }
+
+            // Update 'availableJobsData'
+            let availableJobs = JSON.parse(localStorage.getItem('availableJobsData')) || [];
+            if (status === 'expired') {
+                // Remove the job from availableJobsData if status is expired
+                availableJobs = availableJobs.filter(job => String(job.jobId) !== jobIdToUpdate);
+            } else {
+                // For 'active' or 'paused', update the status in availableJobsData
+                const availableJobIndex = availableJobs.findIndex(job => String(job.jobId) === jobIdToUpdate);
+                if (availableJobIndex !== -1) {
+                    availableJobs[availableJobIndex].status = status.charAt(0).toUpperCase() + status.slice(1);
+                }
+            }
+            localStorage.setItem('availableJobsData', JSON.stringify(availableJobs));
+        }
+
+        function getRandomLogoColorClass() {
+            const colors = ['blue', 'green', 'purple', 'pink', 'indigo', 'orange'];
+            const randomIndex = Math.floor(Math.random() * colors.length);
+            return `logo-${colors[randomIndex]}`;
+        }
+
+        function createJobCard(job) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.dataset.jobId = job.id; // Use job.id for consistency with myPostedJobs
+
+            const companyInitial = job.companyName ? job.companyName.charAt(0).toUpperCase() : '';
+            const logoColorClass = getRandomLogoColorClass();
+            const statusClass = `status-${job.status.toLowerCase()}`;
+
+            const requirementsList = job.skills ? job.skills.split(',').map(skill => `<li>${skill.trim()}</li>`).join('') : '';
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="company-logo ${logoColorClass}">${companyInitial}</div>
+                    <div class="card-menu">
+                        <button class="menu-btn">⋮</button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item active" onclick="changeStatus(this, 'active')">
+                                <i class="fa-solid fa-check"></i> Set Active
+                            </button>
+                            <button class="dropdown-item pause" onclick="changeStatus(this, 'paused')">
+                                <i class="fa-solid fa-pause"></i> Pause Job
+                            </button>
+                            <button class="dropdown-item expired" onclick="changeStatus(this, 'expired')">
+                                <i class="fa-solid fa-xmark"></i> Mark Expired
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="job-info">
+                    <h3>${job.jobTitle}</h3>
+                    <p class="company-name">${job.companyName}</p>
+                    <div class="location">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>${job.jobLocation}</span>
+                    </div>
+                </div>
+                <div class="job-requirements">
+                    <h4>Requirements</h4>
+                    <ul>
+                        ${requirementsList}
+                    </ul>
+                </div>
+                <div class="job-metrics">
+                    <span class="status-badge ${statusClass}">${job.status}</span>
+                    <div class="job-stats">
+                        <div class="stat">
+                            <i class="fa-solid fa-eye"></i>
+                            <span class="stat-value">${job.views}</span>
+                            <span>views</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fa-solid fa-file-pen"></i>
+                            <span class="stat-value">${job.applications}</span>
+                            <span>applications</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const jobCardsContainer = document.getElementById('jobCardsContainer');
+            let myPostedJobs = JSON.parse(localStorage.getItem('myPostedJobs')) || [];
+
+            // Define static jobs with string IDs for consistency
+            const staticJobs = [
+                {
+                    id: 'job_static_1',
+                    jobTitle: 'Banking Sales Executive',
+                    companyName: 'Your Company Name',
+                    jobLocation: 'Ongole, Tenali, Mangalagiri',
+                    skills: 'Minimum 6 months sales experience, Good communication skills, Knowledge of local area',
+                    status: 'Active',
+                    views: 127,
+                    applications: 0,
+                    postedDate: new Date().toISOString()
+                },
+                {
+                    id: 'job_static_2',
+                    jobTitle: 'Tele Marketing Executive',
+                    companyName: 'Your Company Name',
+                    jobLocation: 'Hanamkonda',
+                    skills: 'Bachelor\'s degree in any field, Basic computer knowledge, Strong interpersonal skills',
+                    status: 'Active',
+                    views: 89,
+                    applications: 5,
+                    postedDate: new Date().toISOString()
+                },
+                {
+                    id: 'job_static_3',
+                    jobTitle: 'Customer Service Representative',
+                    companyName: 'Your Company Name',
+                    jobLocation: 'Visakhapatnam',
+                    skills: '1+ years of customer service experience, Fluency in English and Telugu, Ready to work flexible hours',
+                    status: 'Paused',
+                    views: 156,
+                    applications: 12,
+                    postedDate: new Date().toISOString()
+                },
+                {
+                    id: 'job_static_4',
+                    jobTitle: 'Marketing Manager',
+                    companyName: 'Your Company Name',
+                    jobLocation: 'Bangalore',
+                    skills: 'Bachelor\'s degree in any field, Basic computer knowledge, Strong interpersonal skills',
+                    status: 'Active',
+                    views: 178,
+                    applications: 9,
+                    postedDate: new Date().toISOString()
+                },
+                {
+                    id: 'job_static_5',
+                    jobTitle: 'UI/UX Designer',
+                    companyName: 'Your Company Name',
+                    jobLocation: 'Chennai',
+                    skills: 'Familiar with banking products, Target-driven mindset, Must own a smartphone',
+                    status: 'Expired',
+                    views: 245,
+                    applications: 18,
+                    postedDate: new Date().toISOString()
+                }
+            ];
+
+            // Merge static jobs with dynamically posted jobs, prioritizing dynamic if IDs conflict
+            const allJobsMap = new Map();
+            staticJobs.forEach(job => allJobsMap.set(job.id, job));
+            myPostedJobs.forEach(job => allJobsMap.set(job.id, job)); // Overwrite static if dynamic has same ID
+
+            const allJobs = Array.from(allJobsMap.values());
+
+            jobCardsContainer.innerHTML = ''; // Clear existing content (now that static HTML is removed)
+            allJobs.forEach(job => {
+                const newCard = createJobCard(job);
+                jobCardsContainer.appendChild(newCard);
+            });
+
+            const searchInput = document.getElementById("jobSearch");
+            // Re-select all cards after they are dynamically added
+            const currentJobCards = jobCardsContainer.querySelectorAll(".card");
+
+            searchInput.addEventListener("input", function () {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                currentJobCards.forEach(card => {
+                    const jobTitle = card.querySelector(".job-info h3").textContent.toLowerCase();
+                    const companyName = card.querySelector(".company-name").textContent.toLowerCase();
+                    const location = card.querySelector(".location span").textContent.toLowerCase();
+                    if (jobTitle.includes(searchTerm) || companyName.includes(searchTerm) || location.includes(searchTerm)) {
+                        card.style.display = "block";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            });
+
+            const userIcon = document.getElementById('user-icon');
+            const dropdownContent = document.getElementById('dropdown-content');
+            if (userIcon && dropdownContent) {
+                userIcon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dropdownContent.classList.toggle('active');
+                });
+                document.addEventListener('click', (e) => {
+                    if (!dropdownContent.contains(e.target) && !userIcon.contains(e.target)) {
+                        dropdownContent.classList.remove('active');
+                    }
+                });
+            }
+
+            const menuButtons = document.querySelectorAll('.menu-btn');
+            menuButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const dropdown = btn.nextElementSibling;
+                    dropdown.classList.toggle('active');
+                });
+            });
+            document.addEventListener('click', (e) => {
+                document.querySelectorAll('.dropdown-menu.active').forEach(dropdown => {
+                    if (!dropdown.contains(e.target) && !dropdown.previousElementSibling.contains(e.target)) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+<script>
+        particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.json', function() {
+            console.log('particles.js loaded');
+        });
+
+        // Initialize localStorage for posted jobs if not already set
+        if (!localStorage.getItem('myPostedJobs')) {
+            localStorage.setItem('myPostedJobs', JSON.stringify([]));
+        }
+
+        // Toggle dropdown menu for job cards
+        document.querySelectorAll('.menu-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const dropdown = button.nextElementSibling;
+                dropdown.classList.toggle('active');
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.card-menu')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

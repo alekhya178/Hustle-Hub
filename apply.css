@@ -1,0 +1,203 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #201d3a 0%, #1a1730 50%, #0d0b1a 100%);
+}
+
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: rgba(32, 29, 58, 0.95);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #201d3a 0%, #1a1730 50%, #0d0b1a 100%); /* Moved gradient here */
+  z-index: -1;
+  pointer-events: none;
+}
+.head {
+  background: linear-gradient(to right, #4cb69f, #f5f5f5);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  color: #f5f5f5;
+}
+
+.job-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color:white;
+}
+
+.company {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(245, 245, 245, 0.8);
+}
+
+.back-link {
+  text-decoration: none;
+  color: #4cb69f;
+  font-size: 14px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.info-banner {
+  background: linear-gradient(to right, #4cb69f, #f5f5f5);
+  color: #f5f5f5;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.info-banner h3 {
+  margin: 0 0 5px;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(245, 245, 245, 0.9);
+}
+
+.info-banner p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(245, 245, 245, 0.8);
+}
+
+.section {
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #f5f5f5;
+}
+
+.option {
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: #f5f5f5;
+  background-color: rgba(76, 182, 159, 0.2);
+}
+
+.option input {
+  margin-right: 8px;
+}
+
+.option.sky {
+  background-color: #4cb69f;
+}
+
+.option.green {
+  background-color: #3aa085;
+}
+
+.option.peach {
+  background-color: rgba(245, 245, 245, 0.2);
+}
+
+.option.lavender {
+  background-color: rgba(76, 182, 159, 0.3);
+}
+
+.option.red {
+  background-color: rgba(245, 245, 245, 0.15);
+}
+
+.option.yellow {
+  background-color: #f5f5f5;
+  color: #201d3a;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid rgba(76, 182, 159, 0.2);
+  border-radius: 8px;
+  background-color: rgba(26, 23, 48, 0.8);
+  color: #f5f5f5;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid rgba(76, 182, 159, 0.2);
+  background-color: rgba(26, 23, 48, 0.8);
+  color: #f5f5f5;
+  resize: vertical;
+}
+
+.availability-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button.submit {
+  background-color: #4cb69f;
+  color: #201d3a;
+}
+
+button.submit:hover {
+  background-color: #3aa085;
+}
+
+button.draft {
+  background-color: transparent;
+  border: 2px solid #4cb69f;
+  color: #4cb69f;
+}
+
+button.draft:hover {
+  background-color: #4cb69f;
+  color: #201d3a;
+}
